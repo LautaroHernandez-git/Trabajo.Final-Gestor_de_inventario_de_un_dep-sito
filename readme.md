@@ -419,6 +419,75 @@ Funciones del sistema
 Archivos binarios
 ```
 
+## Casos de análisis de referencia
+
+### Caso normal: entrada de mercadería
+
+**Situación**
+Registrar una entrada de stock para un producto existente.
+
+**Ejemplo**
+- Stock actual: 50
+- Entrada: 20
+
+**Resultado esperado**
+Stock final: 70
+Se registra el movimiento en `movimientos.dat`.
+
+---
+
+### Caso límite: stock exactamente en el mínimo
+
+**Ejemplo**
+- Stock actual: 15
+- Stock mínimo: 10
+- Salida: 5
+
+**Resultado esperado**
+Stock final: 10
+El producto **NO** aparece como “a reponer”.
+
+---
+
+### Caso límite: stock por debajo del mínimo
+
+**Ejemplo**
+- Stock actual: 15
+- Stock mínimo: 10
+- Salida: 7
+
+**Resultado esperado**
+Stock final: 8
+
+El producto aparece en el listado de reposición.
+
+---
+
+### Caso extremo: salida mayor al stock disponible
+
+**Ejemplo**
+- Stock actual: 12
+- Salida solicitada: 20
+
+**Resultado esperado**
+El sistema debe:
+
+- rechazar la operación
+- informar error
+- no modificar stock
+- no registrar movimiento
+
+---
+
+### Caso de búsqueda eficiente
+
+**Situación**
+Consulta de un producto por código.
+
+**Resultado esperado**
+Resolución mediante acceso al índice en memoria con complejidad:
+**O(1)**
+
 ---
 
 # Conclusión
